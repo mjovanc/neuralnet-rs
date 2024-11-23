@@ -52,16 +52,15 @@ mod tests {
     #[test]
     fn test_sigmoid() {
         assert_relative_eq!(sigmoid(0.0), 0.5, epsilon = 1e-10);
-        // For extreme values, use ULPs comparison which is better for small numbers near zero or one
-        assert_ulps_eq!(sigmoid(-10.0), 0.0, max_ulps = 4);
-        assert_ulps_eq!(sigmoid(10.0), 1.0, max_ulps = 4);
+        assert_relative_eq!(sigmoid(-10.0), 4.5397868702434395e-5, epsilon = 1e-10);
+        assert_relative_eq!(sigmoid(10.0), 0.9999546021312976, epsilon = 1e-10);
     }
 
     #[test]
     fn test_tanh() {
-        assert_ulps_eq!(tanh(-10.0), -1.0, max_ulps = 4);
+        assert_relative_eq!(tanh(-10.0), -0.9999999958776926, epsilon = 1e-10);
         assert_ulps_eq!(tanh(0.0), 0.0, max_ulps = 4);
-        assert_ulps_eq!(tanh(10.0), 1.0, max_ulps = 4);
+        assert_relative_eq!(tanh(10.0), 0.9999999958776926, epsilon = 1e-10);
     }
 
     #[test]
