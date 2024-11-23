@@ -1,5 +1,3 @@
-mod utils;
-
 fn main() {
-    println!("Hello, world!");
+    println!("Creating a new neural network...");
 }
