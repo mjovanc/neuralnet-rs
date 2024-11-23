@@ -90,3 +90,59 @@ impl Mul for Matrix {
         Matrix::new(self.rows, other.cols, result)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_vector_addition() {
+        let v1 = Vector::new(vec![1.0, 2.0, 3.0]);
+        let v2 = Vector::new(vec![4.0, 5.0, 6.0]);
+        let v3 = v1 + v2;
+        assert_eq!(v3.elements, vec![5.0, 7.0, 9.0]);
+    }
+
+    #[test]
+    fn test_vector_dot_product() {
+        let v1 = Vector::new(vec![1.0, 2.0, 3.0]);
+        let v2 = Vector::new(vec![4.0, 5.0, 6.0]);
+        assert_eq!(v1.dot(&v2), 32.0);
+    }
+
+    #[test]
+    fn test_matrix_multiplication() {
+        let m1 = Matrix::new(2, 3, vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+        let m2 = Matrix::new(3, 2, vec![7.0, 8.0, 9.0, 10.0, 11.0, 12.0]);
+        let result = m1 * m2;
+        assert_eq!(result.elements, vec![58.0, 64.0, 139.0, 154.0]);
+    }
+
+    #[test]
+    fn test_matrix_transpose() {
+        let m1 = Matrix::new(2, 3, vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+        let transposed = m1.transpose();
+        assert_eq!(transposed.elements, vec![1.0, 4.0, 2.0, 5.0, 3.0, 6.0]);
+    }
+
+    #[test]
+    fn test_matrix_inverse() {
+        use approx::assert_relative_eq;
+
+        let m = Matrix::new(2, 2, vec![4.0, 7.0, 2.0, 6.0]);
+        if let Some(inverse) = m.inverse() {
+            let identity = m * inverse;
+            for (i, &x) in identity.elements.iter().enumerate() {
+                assert_relative_eq!(x, if i % 3 == 0 { 1.0 } else { 0.0 }, epsilon = 1e-10);
+            }
+        } else {
+            panic!("Matrix should have an inverse");
+        }
+    }
+
+    #[test]
+    fn test_matrix_determinant() {
+        let m = Matrix::new(2, 2, vec![4.0, 7.0, 2.0, 6.0]);
+        assert_eq!(m.determinant(), 10.0);
+    }
+}
