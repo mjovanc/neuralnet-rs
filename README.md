@@ -1,5 +1,5 @@
 # nn-rs
-Just a simple neural network in Rust for learning purposes.
+Just a simple neural network (single-layer perceptron) in Rust for learning purposes.
 
 ## Usage
 
