@@ -12,7 +12,7 @@ fn main() {
     let test_inputs = d.test_inputs;
 
     // Initialize the network
-    let mut neural_net = NeuralNetwork::new();
+    let mut neural_net = NeuralNetwork::new(0.1);
 
     // Train for 10000 epochs
     neural_net.train(inputs, outputs, 10000);

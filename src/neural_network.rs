@@ -8,14 +8,14 @@ pub struct NeuralNetwork {
 }
 
 impl NeuralNetwork {
-    pub fn new() -> Self {
+    pub fn new(learning_rate: f64) -> Self {
         let mut rng = rand::thread_rng();
         let weights = vec![rng.gen_range(0.0..1.0), rng.gen_range(0.0..1.0)];
 
         Self {
             weights,
             bias: rng.gen_range(0.0..1.0),
-            learning_rate: 0.1,
+            learning_rate,
         }
     }
 
