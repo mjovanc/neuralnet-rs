@@ -7,6 +7,12 @@ Build the project with `cargo build` and run it with `cargo run`.
 
 ## Output
 
+Plotting the error rate over the epochs:
+
+[![Error rate over epochs](loss_curve.png)](loss_curve.png)
+
+The output in the console:
+
 ```shell
 Input: [0.9, 0.1], Prediction: 0.9
 Input: [0.5, 0.5], Prediction: 0.9
